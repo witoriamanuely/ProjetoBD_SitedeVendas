@@ -1,19 +1,4 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
-
-    <title>Site</title>
-</head>
+<% include partials/header %>
 
 <body>
     <!-- Navbar -->
@@ -22,7 +7,7 @@
         <div class="container">
             <ul class="navbar-nav bd-navbar-nav">
                 <li class="nav-item">
-                    <a class="navbar-brand" href="index.html">Loja</a>
+                    <a class="navbar-brand" href="/">Loja</a>
                 </li>
             </ul>
         </div>
@@ -34,15 +19,15 @@
         <form class="needs-validation" method="POST" novalidate>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="primeiroNome"><strong>Nome</strong></label>
-                    <input type="text" class="form-control" id="primeiroNome" placeholder="" value="" required>
+                    <label for="firstName"><strong>Nome</strong></label>
+                    <input name="firstName" type="text" class="form-control" id="firstName" placeholder="" value="" required>
                     <div class="invalid-feedback">
                         É necessário um nome válido.
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="sobreNome"><strong>Sobrenome</strong></label>
-                    <input type="text" class="form-control" id="sobreNome" placeholder="" value="" required>
+                    <label for="lastName"><strong>Sobrenome</strong></label>
+                    <input name="lastName" type="text" class="form-control" id="lastName" placeholder="" value="" required>
                     <div class="invalid-feedback">
                         É necessário um sobrenome válido.
                     </div>
@@ -51,7 +36,7 @@
 
             <div class="form-group">
                 <label for="email"><strong>Email</strong></label>
-                <input type="email" class="form-control" id="email" placeholder="" required>
+                <input name="email" type="email" class="form-control" id="email" placeholder="" required>
                 <div class="invalid-feedback">
                     Por favor, digite o seu email.
                 </div>
@@ -59,23 +44,23 @@
 
             <div class="row">
                 <div class="col-md-5 mb-3">
-                    <label for="bairro"><strong>Bairro</strong></label>
-                    <input type="text" class="form-control" id="bairro" placeholder="" required>
+                    <label for="neighborhood"><strong>Bairro</strong></label>
+                    <input name="neighborhood" type="text" class="form-control" id="neighborhood" placeholder="" required>
                     <div class="invalid-feedback">
                         Por favor, digite o seu endereço.
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-3">
-                    <label for="rua"><strong>Rua</strong></label>
-                    <input type="text" class="form-control" id="bairro" placeholder="" required>
+                    <label for="street"><strong>Rua</strong></label>
+                    <input name="street" type="text" class="form-control" id="street" placeholder="" required>
                     <div class="invalid-feedback">
                         Por favor, digite o seu endereço.
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="cep"><strong>CEP</strong></label>
-                    <input type="text" class="form-control" id="cep" placeholder="" required>
+                    <input name="cep" type="text" class="form-control" id="cep" placeholder="" required>
                     <div class="invalid-feedback">
                         Por favor, digite um CEP válido.
                     </div>
@@ -84,21 +69,21 @@
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="telefone1"><strong>Telefone 1</strong></label>
-                    <input type="text" class="form-control" id="telefone1" placeholder="" value="" required>
+                    <label for="telephone1"><strong>Telefone 1</strong></label>
+                    <input name="telephone1" type="text" class="form-control" id="telephone1" placeholder="" value="" required>
                     <div class="invalid-feedback">
                         É necessário um telefone.
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="telefone2"><strong>Telefone 2</strong> <span class="text-muted">(Opcional)</span></label>
-                    <input type="text" class="form-control" id="telefone2" placeholder="" value="">
+                    <label for="telephone2"><strong>Telefone 2</strong> <span class="text-muted">(Opcional)</span></label>
+                    <input name="telephone2" type="text" class="form-control" id="telephone2" placeholder="" value="">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="senha"><strong>Senha</strong></label>
-                <input type="password" class="form-control" id="senha" placeholder="" required>
+                <label for="password"><strong>Senha</strong></label>
+                <input name="password" type="password" class="form-control" id="password" placeholder="" required>
                 <div class="invalid-feedback">
                     Por favor, digite uma senha.
                 </div>
@@ -110,18 +95,7 @@
         </form>
     </div>
 
-
-    <footer class="footer bg-dark">
-        <div class="container text-center">
-            <p class="text-white">Copyright &copy; 2018, Meu site</p>
-        </div>
-    </footer>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <% include partials/footer %>
 
     <script>
         (function () {

@@ -1,57 +1,8 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
-
-    <title>Site</title>
-</head>
+<% include partials/header %>
 
 <body>
-    <!-- Navbar -->
-
-    <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-        <div class="container">
-            <a class="navbar-brand mt-0" href="index.html">Loja</a>
-
-            <form class="mx-2 my-auto d-inline w-100">
-                <div class="input-group">
-                    <input type="text" class="form-control border border-right-0" placeholder="Buscar">
-                    <span class="input-group-append">
-                        <button class="btn border border-left-0" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </form>
-
-            <a class="nav-link ml-3 text-light" href="login.html">Login</a>
-        </div>
-    </nav>
-
-    <nav class="navbar navbar-dark bg-secondary navbar-expand-sm">
-        <div class="container">
-            <div class="nav-scroller py-1 mb-2">
-                <a class="p-3 text-light" href="#">TVs e Áudio</a>
-                <a class="p-3 text-light" href="#">Eletrodomésticos</a>
-                <a class="p-3 text-light" href="#">Informática</a>
-                <a class="p-3 text-light" href="#">Telefonia</a>
-                <a class="p-3 text-light" href="#">Esporte e Lazer</a>
-                <a class="p-3 text-light" href="#">Automotivo</a>
-                <a class="p-3 text-light" href="#">Games</a>
-                <a class="p-3 text-light" href="#">Livros e Papelaria</a>
-            </div>
-        </div>
-    </nav>
-
+    <% include partials/navbar %>
+    
     <!--
     <div class="container">
         <div class="card-deck">
@@ -268,10 +219,7 @@
                         <img class="card-img-top img-adjusted" src="img/produtos/tv/tv3.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">TV 1</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of
-                                the
-                                card's content.</p>
+                            <p class="card-text">R$ 1024,00</p>
                         </div>
                         <a href="#" class="btn btn-primary">Adicionar ao Carrinho
                             <i class="fa fa-cart-plus"></i>
@@ -282,18 +230,7 @@
         </div>
     </div>
 
-
-    <footer class="footer bg-dark">
-        <div class="container text-center">
-            <p class="text-white">Copyright &copy; 2018, Meu site</p>
-        </div>
-    </footer>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <% include partials/footer %>
 </body>
 
 </html>
