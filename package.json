@@ -1,16 +1,18 @@
 {
-  "name": "bs4starter",
+  "name": "projeto_bd",
   "version": "1.0.0",
-  "description": "Bootstrap 4 starter workflow",
+  "description": "ProjetoBD - Sites de Vendas",
   "main": "index.js",
   "scripts": {
     "start": "gulp"
   },
-  "author": "Brad Traversy",
+  "author": "Anderson Nobrega - Witoria Manuely",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "bootstrap": "^4.1.1",
-    "font-awesome": "^4.7.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
     "jquery": "^3.2.1",
     "popper.js": "^1.11.1"
   },
