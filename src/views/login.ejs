@@ -1,19 +1,12 @@
 <% include partials/header %>
 
 <body>
-    <!-- Navbar -->
-
-    <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-        <div class="container">
-            <ul class="navbar-nav bd-navbar-nav">
-                <li class="nav-item">
-                    <a class="navbar-brand" href="/">Loja</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    
+    <% include partials/navbar_account %>
 
     <br>
+
+    <% include partials/messages %>
 
     <div class="container">
         <div class="row">
@@ -46,7 +39,7 @@
             <div class="col">
                 <label><strong>Ainda não tenho cadastro</strong></label>
                 <label>Para comprar em nosso site é preciso realizar um cadastro.</label>
-                <a class="btn btn-outline-secondary" href="/cadastro">Cadastre-se</a>
+                <a class="btn btn-outline-secondary" href="/users/register">Cadastre-se</a>
             </div>
         </div>
     </div>

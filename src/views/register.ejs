@@ -1,0 +1,139 @@
+<% include partials/header %>
+
+<body>
+
+    <% include partials/navbar_account %>
+
+    <br>
+
+    <%if (locals.errors) { %>
+    <div class="container">
+        <% errors.forEach(function(errors) { %>
+        <div class="alert alert-danger">
+            <%= errors.msg %>
+        </div>
+        <% }); %>
+    </div>
+    <% }%>
+
+    <div class="container">
+        <form class="needs-validation" method="POST" novalidate>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="firstName"><strong>Nome</strong></label>
+                    <input name="firstName" type="text" class="form-control" id="firstName" placeholder="Ex: Witória"
+                        value="" required>
+                    <div class="invalid-feedback">
+                        É necessário um nome válido.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lastName"><strong>Sobrenome</strong></label>
+                    <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Ex: Manuely Cavalcante Aráujo"
+                        value="" required>
+                    <div class="invalid-feedback">
+                        É necessário um sobrenome válido.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email"><strong>Email</strong></label>
+                <input name="email" type="email" class="form-control" id="email" placeholder="Ex: witoria@email.com"
+                    required>
+                <div class="invalid-feedback">
+                    Por favor, digite o seu email.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 mb-3">
+                    <label for="neighborhood"><strong>Bairro</strong></label>
+                    <input name="neighborhood" type="text" class="form-control" id="neighborhood" placeholder="Ex: Jardim Paulistano"
+                        required>
+                    <div class="invalid-feedback">
+                        Por favor, digite o seu endereço.
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="street"><strong>Rua</strong></label>
+                    <input name="street" type="text" class="form-control" id="street" placeholder="Ex: Manoel Leonardo Gomes"
+                        required>
+                    <div class="invalid-feedback">
+                        Por favor, digite o seu endereço.
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="zipCode"><strong>CEP</strong></label>
+                    <input name="zipCode" type="text" class="form-control" id="zipCode" placeholder="Ex: 58415320"
+                        required>
+                    <div class="invalid-feedback">
+                        Por favor, digite um CEP válido.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="phone1"><strong>Telefone 1</strong></label>
+                    <input name="phone1" type="text" class="form-control" id="phone1" placeholder="Ex: (83) 991029196"
+                        value="" required>
+                    <div class="invalid-feedback">
+                        É necessário um telefone.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="phone2"><strong>Telefone 2</strong> <span class="text-muted">(Opcional)</span></label>
+                    <input name="phone2" type="text" class="form-control" id="phone2" placeholder="Ex: (83) 991029196"
+                        value="">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="password1"><strong>Senha</strong></label>
+                    <input name="password1" type="password" class="form-control" id="password1" placeholder="Senha"
+                        required>
+                    <div class="invalid-feedback">
+                        Por favor, digite uma senha.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="password2"><strong>Confirmar a Senha</strong></label>
+                    <input name="password2" type="password" class="form-control" id="password2" placeholder="Confirmar a Senha"
+                        required>
+                    <div class="invalid-feedback">
+                        Por favor, digite a senha novamente.
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mb-4 mt-5">
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+    <% include partials/footer %>
+
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>
+
+</html>
