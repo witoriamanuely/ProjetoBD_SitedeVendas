@@ -1,0 +1,51 @@
+-- Database: bluebird
+
+-- DROP DATABASE bluebird;
+
+--CREATE SCHEMA projetobd;
+
+/*CREATE TABLE projetobd.user(
+	ID int PRIMARY KEY,
+	name varchar(100),
+	password int, 
+	email varchar(100),
+	street varchar(100),
+	number int,
+	zip_code int,
+	neighborhood varchar(100)
+);
+CREATE TABLE projetobd.phone(
+	mobile_phone int,
+	landline int,
+	ID int PRIMARY KEY
+
+);
+CREATE TABLE projetobd.user_phone(
+	ID_phone int,
+	ID_user int,
+	Foreign Key (ID_phone)
+	references projetobd.phone(ID),
+	Foreign Key (ID_user)
+	references projetobd.user(ID)
+);*/
+
+
+CREATE TABLE projetobd.order(
+	code int PRIMARY KEY,
+	data date,
+	order_quantity int, 
+	ID_user int, 
+	Foreign Key (ID_user)
+	references projetobd.user(ID)
+);
+CREATE TABLE projetobd.product(
+	ID int PRIMARY KEY, 
+	name varchar(100),
+	category varchar(100),
+	stock_quantity int, 
+	ID_order int,
+	Foreign Key (ID_order)
+	references projetobd.product(ID)
+);
+
+
