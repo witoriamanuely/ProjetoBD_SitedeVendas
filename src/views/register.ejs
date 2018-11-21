@@ -1,3 +1,6 @@
+<!doctype html>
+<html lang="en">
+
 <% include partials/header %>
 
 <body>
@@ -6,15 +9,8 @@
 
     <br>
 
-    <%if (locals.errors) { %>
-    <div class="container">
-        <% errors.forEach(function(errors) { %>
-        <div class="alert alert-danger">
-            <%= errors.msg %>
-        </div>
-        <% }); %>
-    </div>
-    <% }%>
+    <% include partials/messages %>
+
 
     <div class="container">
         <form class="needs-validation" method="POST" novalidate>
@@ -52,7 +48,7 @@
                     <input name="neighborhood" type="text" class="form-control" id="neighborhood" placeholder="Ex: Jardim Paulistano"
                         required>
                     <div class="invalid-feedback">
-                        Por favor, digite o seu endereço.
+                        Por favor, digite o seu bairro.
                     </div>
                 </div>
 
@@ -61,7 +57,7 @@
                     <input name="street" type="text" class="form-control" id="street" placeholder="Ex: Manoel Leonardo Gomes"
                         required>
                     <div class="invalid-feedback">
-                        Por favor, digite o seu endereço.
+                        Por favor, digite a sua rua.
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
@@ -117,23 +113,8 @@
 
     <% include partials/footer %>
 
-    <script>
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                var forms = document.getElementsByClassName('needs-validation');
-                var validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
+    <% include partials/bootstrap_validation %>
+
 </body>
 
 </html>

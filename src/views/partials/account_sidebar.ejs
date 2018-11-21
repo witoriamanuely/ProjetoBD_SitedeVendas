@@ -1,0 +1,14 @@
+<div class="col-3">
+  <div class="card text-center bg-muted border-0" style="width: 18rem;">
+    <i class="fas fa-user fa-5x"></i>
+    <div class="card-body">
+      <label class="card-text">Bem Vindo, <%= locals.user %></label>
+    </div>
+  </div>
+
+  <ul class="ml-4 list-group mt-2">
+    <a href="/users/account/info" class="list-group-item list-group-item-action">Meus Dados</a>
+    <a href="/users/account/order" class="list-group-item list-group-item-action">Meus Pedidos</a>
+    <a href="/users/logout" class="list-group-item list-group-item-action">Logout</a>
+  </ul>
+</div>

@@ -7,30 +7,12 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
 const pg = require('pg');
-const connectionString = 'postgres://bluebird:bluebird@localhost/bluebird';
  
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
 
 const app = express();
-
-app.get('/', function (req, res, next) {
-	pg.connect(connectionString,function(err,client,done) {
-		 if(err){
-				 console.log("not able to get connection "+ err);
-				 res.status(400).send(err);
-		 } 
-		 client.query('SELECT * FROM get', [1],function(err,result) {
-				 done(); // closing the connection;
-				 if(err){
-						 console.log(err);
-						 res.status(400).send(err);
-				 }
-				 res.status(200).send(result.rows);
-		 });
-	});
-});
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -71,6 +53,7 @@ app.use(function(req, res, next) {
 	res.locals.success_msg = req.flash('success_msg');
 	res.locals.error_msg = req.flash('error_msg');
 	res.locals.error = req.flash('error');
+	res.locals.user = req.user || null;
 	next();
 });
 

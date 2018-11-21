@@ -1,3 +1,13 @@
+<%if (locals.errors) { %>
+    <div class="container">
+        <% errors.forEach(function(errors) { %>
+        <div class="alert alert-danger">
+            <%= errors.msg %>
+        </div>
+        <% }); %>
+    </div>
+<% }%>
+
 <div class="container">
     <%if (success_msg.length > 0) { %>
         <div class="alert alert-success">

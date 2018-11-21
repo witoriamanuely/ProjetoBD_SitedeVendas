@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<% include partials/header %>
+
+<body>
+    <% include partials/navbar_account %>
+
+    <br>
+
+    <div class="container mt-5">
+        <div class="row">
+            <% include partials/account_sidebar %>
+
+            <div class="col">
+
+                <% include partials/messages %>
+
+                <br>
+                <h2><strong>Meus Dados</strong></h2>
+                <br>
+                <h5>Dados Pessoais</h5>
+                <hr class="mt-3 mb-3">
+
+                <form class="needs-validation" method="POST" novalidate>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstName"><strong>Nome</strong></label>
+                            <input name="firstName" type="text" class="form-control" id="firstName" placeholder="Ex: Witória"
+                                value="" required>
+                            <div class="invalid-feedback">
+                                É necessário um nome válido.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName"><strong>Sobrenome</strong></label>
+                            <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Ex: Manuely Cavalcante Aráujo"
+                                value="" required>
+                            <div class="invalid-feedback">
+                                É necessário um sobrenome válido.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="phone1"><strong>Telefone 1</strong></label>
+                            <input name="phone1" type="text" class="form-control" id="phone1" placeholder="Ex: (83) 991029196"
+                                value="" required>
+                            <div class="invalid-feedback">
+                                É necessário um telefone.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="phone2"><strong>Telefone 2</strong> <span class="text-muted">(Opcional)</span></label>
+                            <input name="phone2" type="text" class="form-control" id="phone2" placeholder="Ex: (83) 991029196"
+                                value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><strong>Email</strong></label>
+                        <input name="email" type="email" class="form-control" id="email" placeholder="Ex: witoria@email.com"
+                            required>
+                        <div class="invalid-feedback">
+                            Por favor, digite o seu email.
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-1 mb-3">Alterar Informações</button>
+                </form>
+
+                <br>
+                <h5>Endereço</h5>
+                <hr class="mt-3 mb-3">
+
+                <form class="needs-validation" method="POST" novalidate>
+                    <div class="row">
+                        <div class="col-md-10 mb-3">
+                            <label for="street"><strong>Rua</strong></label>
+                            <input name="street" type="text" class="form-control" id="street" placeholder="Ex: Manoel Leonardo Gomes"
+                                required>
+                            <div class="invalid-feedback">
+                                Por favor, digite a sua rua.
+                            </div>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for="houseNumber"><strong>Número</strong></label>
+                            <input name="houseNumber" type="text" class="form-control" id="houseNumber" placeholder="Ex: 1055"
+                                required>
+                            <div class="invalid-feedback">
+                                Por favor, digite um CEP válido.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label for="neighborhood"><strong>Bairro</strong></label>
+                            <input name="neighborhood" type="text" class="form-control" id="neighborhood" placeholder="Ex: Jardim Paulistano"
+                                required>
+                            <div class="invalid-feedback">
+                                Por favor, digite o seu bairro.
+                                </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="zipCode"><strong>CEP</strong></label>
+                            <input name="zipCode" type="text" class="form-control" id="zipCode" placeholder="Ex: 58415320"
+                                required>
+                            <div class="invalid-feedback">
+                                Por favor, digite um CEP válido.
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-1 mb-3">Alterar Endereço</button>
+                </form>
+
+                <br>
+                <h5>Senha</h5>
+                <hr class="mt-3 mb-3">
+
+                <form class="needs-validation" method="POST" novalidate>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="password1"><strong>Nova Senha</strong></label>
+                            <input name="password1" type="password" class="form-control" id="password1" placeholder="Senha"
+                                required>
+                            <div class="invalid-feedback">
+                                Por favor, digite uma senha.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="password2"><strong>Confirmar a Nova Senha</strong></label>
+                            <input name="password2" type="password" class="form-control" id="password2" placeholder="Confirmar a Senha"
+                                required>
+                            <div class="invalid-feedback">
+                                Por favor, digite a senha novamente.
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-1 mb-3">Confirmar Nova Senha</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <% include partials/footer %>
+</body>
+
+</html>

@@ -1,7 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const pg = require('pg');
 const LocalStrategy = require('passport-local').Strategy;
+
+function returnMessages(res, req, errors, string, address_error, address_success) {
+    var errors = errors;
+
+    if (errors) {
+        res.render(address_error, {
+            errors: errors
+        });
+    } else {
+        req.flash('success_msg', string);
+
+        res.redirect(address_success);
+    }
+}
 
 router.get('/login', function (req, res) {
     res.render('login')
@@ -9,6 +24,22 @@ router.get('/login', function (req, res) {
 
 router.get('/register', function (req, res) {
     res.render('register')
+});
+
+router.get('/account/info', function (req, res) {
+    res.render('info')
+});
+
+router.get('/account/order', function (req, res) {
+    res.render('order')
+});
+
+router.get('/logout', function (req, res) {
+    req.logout();
+    
+    req.flash('success_msg', 'Você não está mais logado');
+    
+    res.redirect('/users/login');
 });
 
 router.post('/register', function (req, res) {
@@ -23,25 +54,26 @@ router.post('/register', function (req, res) {
     var password1 = req.body.password1;
     var password2 = req.body.password2;
 
-    req.checkBody('password1', 'A senha deve ter no minimo 8 digitos e no máximo 20').isLength({
+    req.checkBody('password1', 'A senha deve ter no minimo 8 digitos e no máximo 24').isLength({
         min: 8,
-        max: 20
+        max: 24
     });
     req.checkBody('password2', 'As senhas digitadas não são iguais').equals(password1);
 
-    var errors = req.validationErrors();
+    returnMessages(res, req, req.validationErrors(), 'Você está registrado e pode fazer o login', 'register', '/users/login');
+});
 
-    if (errors) {
-        res.render('register', {
-            errors: errors
-        });
-    } else {
-        user
+router.post('/account/info', function (req, res) {
+    var password1 = req.body.password1;
+    var password2 = req.body.password2;
 
-        req.flash('success_msg', 'Você está registrado e pode fazer o login');
+    req.checkBody('password1', 'A senha deve ter no minimo 8 digitos e no máximo 24').isLength({
+        min: 8,
+        max: 24
+    });
+    req.checkBody('password2', 'As senhas digitadas não são iguais').equals(password1);
 
-        res.redirect('login');
-    }
+    returnMessages(res, req, req.validationErrors(), 'Senha alterada com sucesso', 'info', '/users/account/info');
 });
 
 passport.use(new LocalStrategy(

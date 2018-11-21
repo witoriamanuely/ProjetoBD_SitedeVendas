@@ -1,37 +1,53 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-  <div class="container">
-    <a class="navbar-brand mt-0" href="/">Loja</a>
+	<div class="container">
+		<a class="navbar-brand mt-0" href="/">Loja</a>
 
-    <form class="mx-2 my-auto d-inline w-100">
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control border border-right-0"
-          placeholder="Buscar"
-        />
-        <span class="input-group-append">
-          <button class="btn border border-left-0" type="button">
-            <i class="fa fa-search"></i>
-          </button>
-        </span>
-      </div>
-    </form>
+		<form class="mx-2 my-auto d-inline w-100">
+			<div class="input-group">
+				<input type="text" class="form-control border border-right-0" placeholder="Buscar" />
+				<span class="input-group-append">
+					<button class="btn border border-left-0" type="button">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
+			</div>
+		</form>
 
-    <a class="nav-link ml-3 text-light" href="/users/login">Login</a>
-  </div>
+		<%if (locals.user) { %>
+			<a class="nav-link ml-3 text-light py-0" href="/users/account/info">
+				<i class="fas fa-user-circle fa-2x"></i>
+			</a>
+
+			<a class="nav-link ml-3 text-light py-0" href="/users/cart">
+				<i class="fas fa-shopping-cart fa-2x"></i>
+			</a>
+
+			<a class="nav-link ml-3 text-light py-0" href="/users/logout">
+				<i class="fas fa-sign-out-alt fa-2x"></i>
+			</a>
+		<% } else { %>
+			<a class="nav-link ml-3 text-light py-0" href="/users/login">
+				<i class="fas fa-sign-in-alt fa-2x"></i>
+			</a>
+
+			<a class="nav-link ml-3 text-light py-0" href="/users/cart">
+				<i class="fas fa-shopping-cart fa-2x"></i>
+			</a>
+		<% } %>
+	</div>
 </nav>
 
 <nav class="navbar navbar-dark bg-secondary navbar-expand-sm">
-  <div class="container">
-    <div class="nav-scroller py-1 mb-2">
-      <a class="p-3 text-light" href="/products/products">TVs e Áudio</a>
-      <a class="p-3 text-light" href="/products">Eletrodomésticos</a>
-      <a class="p-3 text-light" href="/products">Informática</a>
-      <a class="p-3 text-light" href="/products">Telefonia</a>
-      <a class="p-3 text-light" href="/products">Esporte e Lazer</a>
-      <a class="p-3 text-light" href="/products">Automotivo</a>
-      <a class="p-3 text-light" href="/products">Games</a>
-      <a class="p-3 text-light" href="/products">Livros e Papelaria</a>
-    </div>
-  </div>
+	<div class="container">
+		<div class="nav-scroller py-1 mb-2">
+			<a class="p-3 text-light" href="/products/products">TVs e Áudio</a>
+			<a class="p-3 text-light" href="/products/products">Eletrodomésticos</a>
+			<a class="p-3 text-light" href="/products/products">Informática</a>
+			<a class="p-3 text-light" href="/products/products">Telefonia</a>
+			<a class="p-3 text-light" href="/products/products">Esporte e Lazer</a>
+			<a class="p-3 text-light" href="/products/products">Automotivo</a>
+			<a class="p-3 text-light" href="/products/products">Games</a>
+			<a class="p-3 text-light" href="/products/products">Livros e Papelaria</a>
+		</div>
+	</div>
 </nav>
