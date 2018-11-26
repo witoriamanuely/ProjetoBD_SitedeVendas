@@ -63,7 +63,11 @@ router.post('/register', function (req, res) {
     returnMessages(res, req, req.validationErrors(), 'Você está registrado e pode fazer o login', 'register', '/users/login');
 });
 
-router.post('/account/info', function (req, res) {
+router.post('/account/info/update_info', function (req, res) {
+    returnMessages(res, req, req.validationErrors(), 'Informações alteradas com sucesso', 'info', '/users/account/info');
+});
+
+router.post('/account/info/update_password', function (req, res) {
     var password1 = req.body.password1;
     var password2 = req.body.password2;
 

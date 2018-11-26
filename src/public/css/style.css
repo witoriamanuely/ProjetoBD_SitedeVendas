@@ -80,3 +80,12 @@ body {
 
 #custom-search-input .glyphicon-search {
   font-size: 23px; }
+
+#main_image {
+  position: relative;
+  display: inline; }
+
+.imtip {
+  position: absolute;
+  bottom: 0;
+  right: 0; }

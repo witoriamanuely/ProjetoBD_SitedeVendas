@@ -22,7 +22,7 @@
                 <h5>Dados Pessoais</h5>
                 <hr class="mt-3 mb-3">
 
-                <form class="needs-validation" method="POST" novalidate>
+                <form class="needs-validation" method="POST" action="/users/account/info/update_info" novalidate>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="firstName"><strong>Nome</strong></label>
@@ -67,14 +67,10 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary mt-1 mb-3">Alterar Informações</button>
-                </form>
-
                 <br>
                 <h5>Endereço</h5>
                 <hr class="mt-3 mb-3">
 
-                <form class="needs-validation" method="POST" novalidate>
                     <div class="row">
                         <div class="col-md-10 mb-3">
                             <label for="street"><strong>Rua</strong></label>
@@ -113,14 +109,14 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary mt-1 mb-3">Alterar Endereço</button>
+                    <button type="submit" class="btn btn-primary mt-1 mb-3">Alterar Informações</button>
                 </form>
 
                 <br>
                 <h5>Senha</h5>
                 <hr class="mt-3 mb-3">
 
-                <form class="needs-validation" method="POST" novalidate>
+                <form class="needs-validation" method="POST" action="/users/account/info/update_password" novalidate>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="password1"><strong>Nova Senha</strong></label>
@@ -148,6 +144,9 @@
 
 
     <% include partials/footer %>
+
+    <% include partials/bootstrap_validation %>
+    
 </body>
 
 </html>
