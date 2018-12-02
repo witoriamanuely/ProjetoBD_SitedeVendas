@@ -43,16 +43,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-5 mb-3">
-                    <label for="neighborhood"><strong>Bairro</strong></label>
-                    <input name="neighborhood" type="text" class="form-control" id="neighborhood" placeholder="Ex: Jardim Paulistano"
-                        required>
-                    <div class="invalid-feedback">
-                        Por favor, digite o seu bairro.
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-3">
+                <div class="col-md-10 mb-3">
                     <label for="street"><strong>Rua</strong></label>
                     <input name="street" type="text" class="form-control" id="street" placeholder="Ex: Manoel Leonardo Gomes"
                         required>
@@ -60,7 +51,26 @@
                         Por favor, digite a sua rua.
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-2 mb-3">
+                    <label for="houseNumber"><strong>Número</strong></label>
+                    <input name="houseNumber" type="text" class="form-control" id="houseNumber" placeholder="Ex: 1055"
+                        required>
+                    <div class="invalid-feedback">
+                        Por favor, digite um CEP válido.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <label for="neighborhood"><strong>Bairro</strong></label>
+                    <input name="neighborhood" type="text" class="form-control" id="neighborhood" placeholder="Ex: Jardim Paulistano"
+                        required>
+                    <div class="invalid-feedback">
+                        Por favor, digite o seu bairro.
+                        </div>
+                </div>
+                <div class="col-md-4 mb-3">
                     <label for="zipCode"><strong>CEP</strong></label>
                     <input name="zipCode" type="text" class="form-control" id="zipCode" placeholder="Ex: 58415320"
                         required>
