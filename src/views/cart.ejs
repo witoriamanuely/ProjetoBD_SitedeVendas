@@ -9,6 +9,8 @@
 
     <br>
 
+    <% include partials/messages %>
+
     <div class="container">
         <div class="row">
             <div class="col">
@@ -38,6 +40,7 @@
                     <br>
                     <h5>Total: R$ <%= locals.cart.totalPrice %></h5>
                     <hr class="mt-3 mb-3">
+                    <a href="/products/clear_cart" class="btn btn-primary mt-3 float-right">Limpar Carrinho</a>
                 <% } else {%>
                     <h4>Seu carrinho está vazio</h4>
                 <% } %>

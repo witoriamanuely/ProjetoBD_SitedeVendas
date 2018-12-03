@@ -76,19 +76,6 @@ function loggedIn(req, res, next) {
 	}
 }
 
-function selectQuery(res, query, values, page) {
-	pool.query(query, values, function (err, result) {
-		if (err) {
-			console.log(err);
-			res.status(400).send(err);
-		}
-
-		res.render(page, {
-			phone: result.rows
-		});
-	});
-}
-
 router.get("/account/info", loggedIn, function (req, res) {
 	pool.query(selectUserPhone, [res.locals.user.id_phone], function (err, result) {
 		if (err) {

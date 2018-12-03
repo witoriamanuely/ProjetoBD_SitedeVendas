@@ -97,6 +97,16 @@ router.get('/checkout', loggedIn, function (req, res) {
 	res.render('checkout');
 });
 
+router.get('/clear_cart', function (req, res) {
+	cart.totalAmount = 0;
+	cart.totalPrice = 0;
+	cart.productsId = {};
+
+	req.flash("success_msg", "Carrinho foi esvaziado");
+
+	res.redirect('/products/cart');
+});
+
 router.get('/checkout_confirm', function (req, res) {
 	(async () => {
 		const client = await pool.connect();
@@ -105,7 +115,7 @@ router.get('/checkout_confirm', function (req, res) {
 			await client.query('BEGIN');
 			const { rows } = await client.query(insertOrder, [getDate(), res.locals.user.id]);
 			for (var key in cart.productsId) {
-				if (cart.productsId.hasOwnProperty(key)) { 
+				if (cart.productsId.hasOwnProperty(key)) {
 					await client.query(updateProductTable, [cart.productsId[key].total - cart.productsId[key].quantity, key]);
 					await client.query(insertOrderProduct, [cart.productsId[key].quantity, key, rows[0].code]);
 				}
@@ -116,9 +126,9 @@ router.get('/checkout_confirm', function (req, res) {
 			throw e;
 		} finally {
 			client.release();
-			cart.totalAmount = 0
-			cart.totalPrice = 0
-			cart.productsId = {}
+			cart.totalAmount = 0;
+			cart.totalPrice = 0;
+			cart.productsId = {};
 			res.redirect("/");
 		}
 	})().catch(e => console.error(e.stack));
