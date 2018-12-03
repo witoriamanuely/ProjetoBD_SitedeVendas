@@ -16,7 +16,33 @@
                 <h5>Carrinho</h5>
                 <hr class="mt-3 mb-3">
 
-                <a href="/products/checkout" class="btn btn-primary">Continuar</a>
+                <% if (Object.getOwnPropertyNames(locals.cart.productsId).length > 0) {  %>
+                    <% for (var key in locals.cart.productsId) { %>
+                        <% if (locals.cart.productsId.hasOwnProperty(key)) {  %>
+                            <div class="card">
+                                <div class="row no-gutters">
+                                    <div class="col-auto">
+                                        <img src=<%= locals.cart.productsId[key].img %> height="360" width="150" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="col">
+                                        <div class="card-block px-5">
+                                            <p class="card-text">Produto: <%= locals.cart.productsId[key].name %> </p>
+                                            <p class="card-text">Valor Individual: R$ <%= locals.cart.productsId[key].price %> </p>
+                                            <p class="card-text">Quantidade: <%= locals.cart.productsId[key].quantity %> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% } %>
+                    <br>
+                    <h5>Total: R$ <%= locals.cart.totalPrice %></h5>
+                    <hr class="mt-3 mb-3">
+                <% } else {%>
+                    <h4>Seu carrinho está vazio</h4>
+                <% } %>
+
+                <a href="/products/checkout" class="btn btn-primary mt-3">Continuar</a>
             </div>
 
 

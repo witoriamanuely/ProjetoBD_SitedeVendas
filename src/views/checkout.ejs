@@ -15,35 +15,33 @@
                 <br>
                 <h5>Dados de Pagamento</h5>
                 <hr class="mt-3 mb-3">
+
+                <br>
+                <a href="/products/checkout_confirm" class="btn btn-primary mt-3">Confirmar pedido</a>
             </div>
 
             <div class="col-md-4 order-md-2 mb-4 ml-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Seu Carrinho</span>
-                    <span class="badge badge-secondary badge-pill">3</span>
+                    <span class="badge badge-secondary badge-pill"><%= locals.cart.totalAmount %></span>
                 </h4>
                 <ul class="list-group mb-3">
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Product name</h6>
-                        </div>
-                        <span class="text-muted">R$ 12,00</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Second product</h6>
-                        </div>
-                        <span class="text-muted">R$ 8,00</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Third item</h6>
-                        </div>
-                        <span class="text-muted">R$ 5,00</span>
-                    </li>
+                    <% for (var key in locals.cart.productsId) { %>
+                        <% if (locals.cart.productsId.hasOwnProperty(key)) {  %>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0"><%= locals.cart.productsId[key].name %></h6>
+                                    <small class="text-muted">
+                                        Quantidade: <%= locals.cart.productsId[key].quantity %>
+                                    </small>
+                                </div>
+                                <span class="text-muted">R$ <%= locals.cart.productsId[key].price %></span>
+                            </li>
+                        <% } %>
+                    <% } %>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total</span>
-                        <strong>R$ 20,00</strong>
+                        <strong>R$ <%= locals.cart.totalPrice %></strong>
                     </li>
                 </ul>
             </div>

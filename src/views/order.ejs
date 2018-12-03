@@ -17,6 +17,17 @@
                 <h2><strong>Meus Pedidos</strong></h2>
                 <br>
                 <hr class="mt-3 mb-3">
+
+                <% orders.forEach(function(orders) { %>
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="#" class="text-primary py-0">ID <%= orders.code %></a>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Data do Pedido: <%= orders.data %> </p>
+                        </div>
+                    </div>
+                <% }); %>
             </div>
         </div>
     </div>

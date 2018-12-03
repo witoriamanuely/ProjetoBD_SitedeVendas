@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-9"></div>
             <div class="col-3">
-                <select class="custom-select">
+                <select id="productsOptions" class="form-control">
                     <option selected>Ordernar por..</option>
                     <option value="1">Ordem Alfabética</option>
                     <option value="2">Preço Maior para o Menor</option>
@@ -25,17 +25,52 @@
         <div class="row">
             <% products.forEach(function(products) { %>
                 <div class="col-sm-6 col-lg-3 py-2">
-                    <div class="card text-right">
-                        <img class="card-img-top" src=<%= products.img_path %> alt="Card image cap" height="180" width="42">
-                        <div class="card-body">
-                            <h5 class="card-title mb-4"><%= products.name %></h5>
-                            <h4 class="card-text"><strong>R$ <%= parseFloat(Math.round(products.price * 100) / 100).toFixed(2);%></strong></h4>
-                            <h6 class="card-text">Unidades em estoque: <%= products.stock_quantity %></h6>
+                    <form action="/products/add" method="POST">
+                        <div class="card text-right">
+                            <img class="card-img-top" src=<%=products.img_path %> alt="Card image cap" height="180"
+                            width="42">
+                            <div class="card-body">
+                                <h5 class="card-title mb-4">
+                                    <%= products.name %>
+                                </h5>
+                                <h4 class="card-text"><strong>R$
+                                        <%= parseFloat(Math.round(products.price * 100) / 100).toFixed(2)%></strong></h4>
+                                <input type="hidden" name="productId" value="<%= products.id %>">
+                                <input type="hidden" name="productName" value="<%= products.name %>">
+                                <input type="hidden" name="productQuantity" value="<%= products.stock_quantity %>">
+                                <input type="hidden" name="productPrice" value="<%= parseFloat(Math.round(products.price * 100) / 100).toFixed(2) %>">
+                                <input type="hidden" name="productImg" value="<%= products.img_path %>">
+                                <% if ((locals.cart.productsId[products.id]) == null) { %>
+                                    <h6 class="card-text">Unidades em estoque:
+                                        <%= products.stock_quantity %>
+                                    </h6>
+                                <% } else { %>
+                                    <h6 class="card-text">Unidades em estoque:
+                                        <%= products.stock_quantity - locals.cart.productsId[products.id].quantity %>
+                                    </h6>
+                                <% }%>
+                            </div>
+                            <% if ((locals.cart.productsId[products.id]) == null) { %>
+                                <%if (products.stock_quantity > 0) { %>
+                                    <button type="submit" class="btn btn-primary">Adicionar ao Carrinho
+                                        <i class="fa fa-cart-plus"></i>
+                                    </button>
+                                <% } else { %>
+                                    <a href="#" class="btn btn-primary disabled" aria-disabled="true">Estoque esgotado
+                                    </a>
+                                <% } %>
+                            <% } else { %>
+                                <%if (products.stock_quantity - locals.cart.productsId[products.id].quantity > 0) { %>
+                                    <button type="submit" class="btn btn-primary">Adicionar ao Carrinho
+                                        <i class="fa fa-cart-plus"></i>
+                                    </button>
+                                <% } else { %>
+                                    <a href="#" class="btn btn-primary disabled" aria-disabled="true">Estoque esgotado
+                                    </a>
+                                <% } %>
+                            <% }%>
                         </div>
-                        <a href="#" class="btn btn-primary">Adicionar ao Carrinho
-                            <i class="fas fa-cart-plus"></i>
-                        </a>
-                    </div>
+                    </form>
                 </div>
             <% }); %>
         </div>

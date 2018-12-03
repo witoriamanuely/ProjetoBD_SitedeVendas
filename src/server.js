@@ -10,6 +10,7 @@ const pg = require('pg');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
+var cart = require('./cart');
 
 const app = express();
 
@@ -48,7 +49,8 @@ app.use(bodyParser.urlencoded({
 app.use(expressSession({
 	secret: 'secret',
 	saveUninitialized: true,
-	resave: true
+	resave: true,
+	cookie: { maxAge : 3600000 }
 }));
 
 app.use(passport.initialize());
@@ -78,6 +80,7 @@ app.use(function (req, res, next) {
 	res.locals.error_msg = req.flash('error_msg');
 	res.locals.error = req.flash('error');
 	res.locals.user = req.user || null;
+	res.locals.cart = cart;
 	next();
 });
 

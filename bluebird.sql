@@ -19,13 +19,13 @@ CREATE TABLE projetobd.user(
 	number int,
 	zip_code varchar(25),
 	neighborhood varchar(100),
-	ID_phone SERIAL,
+	ID_phone int,
 	Foreign key (ID_phone)
 	references projetobd.phone(ID)
 );
 
 CREATE TABLE projetobd.order(
-	code int PRIMARY KEY,
+	code SERIAL PRIMARY KEY,
 	data date,
 	ID_user int, 
 	Foreign Key (ID_user)
