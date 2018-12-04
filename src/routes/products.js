@@ -3,6 +3,8 @@ const router = express.Router();
 const pg = require('pg');
 var cart = require('../cart');
 
+var productsPageValue = "1";
+
 const config = {
 	user: 'bluebird',
 	database: 'bluebird',
@@ -13,21 +15,14 @@ const config = {
 const pool = new pg.Pool(config);
 
 const selectProducts = "SELECT * FROM projetobd.product";
+const selectProductsPriceCres = "SELECT * FROM projetobd.product ORDER BY price ASC";
+const selectProductsPriceDesc = "SELECT * FROM projetobd.product ORDER BY price DESC";
+const selectProductsAlpha = "SELECT * FROM projetobd.product ORDER BY name ASC";
 const updateProductTable =
 	'UPDATE projetobd.product SET stock_quantity=$1 WHERE ID=$2';
 const insertOrder =
 	'INSERT INTO projetobd.order(data, id_user) VALUES($1, $2) RETURNING code'
 const insertOrderProduct = 'INSERT INTO projetobd.order_product(order_quantity, id_product, id_order) VALUES ($1, $2, $3);'
-
-router.get('/products', function (req, res) {
-	pool.connect(function (err, client, done) {
-		if (err) {
-			console.log("Não foi possivel fazer a conexão" + err);
-			res.status(400).send(err);
-		}
-		selectQuery(err, client, done, res, selectProducts, 'products');
-	});
-});
 
 function getDate() {
 	var today = new Date();
@@ -69,6 +64,30 @@ function loggedIn(req, res, next) {
 		res.redirect("/users/login");
 	}
 }
+
+router.post('/change_order', function (req, res) { 
+	productsPageValue = req.body.productsOptions;
+
+	res.redirect('/products/products');
+});
+
+router.get('/products', function (req, res) {
+	pool.connect(function (err, client, done) {
+		if (err) {
+			console.log("Não foi possivel fazer a conexão" + err);
+			res.status(400).send(err);
+		}
+		if (productsPageValue === "1") {
+			selectQuery(err, client, done, res, selectProducts, 'products');
+		} else if (productsPageValue === "2") {
+			selectQuery(err, client, done, res, selectProductsAlpha, 'products');
+		} else if (productsPageValue === "3") {
+			selectQuery(err, client, done, res, selectProductsPriceDesc, 'products');
+		} else if (productsPageValue === "4") {
+			selectQuery(err, client, done, res, selectProductsPriceCres, 'products');
+		}
+	});
+});
 
 router.post('/add', function (req, res) {
 	cart.totalAmount++;
@@ -113,7 +132,9 @@ router.get('/checkout_confirm', function (req, res) {
 
 		try {
 			await client.query('BEGIN');
-			const { rows } = await client.query(insertOrder, [getDate(), res.locals.user.id]);
+			const {
+				rows
+			} = await client.query(insertOrder, [getDate(), res.locals.user.id]);
 			for (var key in cart.productsId) {
 				if (cart.productsId.hasOwnProperty(key)) {
 					await client.query(updateProductTable, [cart.productsId[key].total - cart.productsId[key].quantity, key]);

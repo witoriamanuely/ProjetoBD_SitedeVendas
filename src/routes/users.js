@@ -198,10 +198,9 @@ router.post("/account/info/update_info", loggedIn, function (req, res) {
 				throw e;
 			} finally {
 				client.release();
+				successRedirect(res, req, "Informações alteradas com sucesso", "/users/account/info");
 			}
 		})().catch(e => console.error(e.stack));
-
-		successRedirect(res, req, "Informações alteradas com sucesso", "/users/account/info");
 	}
 });
 
@@ -231,10 +230,9 @@ router.post("/account/info/update_password", loggedIn, function (req, res) {
 				throw e;
 			} finally {
 				client.release();
+				successRedirect(res, req, "Senha alterada com sucesso", "/users/account/info");
 			}
 		})().catch(e => console.error(e.stack));
-
-		successRedirect(res, req, "Senha alterada com sucesso", "/users/account/info");
 	}
 });
 

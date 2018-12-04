@@ -9,13 +9,15 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-9"></div>
-            <div class="col-3">
-                <select id="productsOptions" class="form-control">
-                    <option selected>Ordernar por..</option>
-                    <option value="1">Ordem Alfabética</option>
-                    <option value="2">Preço Maior para o Menor</option>
-                    <option value="3">Preço Menor para o Maior</option>
-                </select>
+            <div class="col">
+                <form class="form-inline" action="/products/change_order" method="POST">
+                    <select name="productsOptions" class="form-control" id="productsOptions" onchange="this.form.submit()">
+                        <option value="1">Ordernar por..</option>
+                        <option value="2">Ordem Alfabética</option>
+                        <option value="3">Preço Maior para o Menor</option>
+                        <option value="4">Preço Menor para o Maior</option>
+                    </select>
+                </form>
             </div>
         </div>
         <hr class="mt-4 mb-2">
