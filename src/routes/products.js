@@ -4,6 +4,7 @@ const pg = require('pg');
 var cart = require('../cart');
 
 var productsPageValue = "1";
+var productsPageActual = "";
 
 const config = {
 	user: 'bluebird',
@@ -14,10 +15,10 @@ const config = {
 
 const pool = new pg.Pool(config);
 
-const selectProducts = "SELECT * FROM projetobd.product";
-const selectProductsPriceCres = "SELECT * FROM projetobd.product ORDER BY price ASC";
-const selectProductsPriceDesc = "SELECT * FROM projetobd.product ORDER BY price DESC";
-const selectProductsAlpha = "SELECT * FROM projetobd.product ORDER BY name ASC";
+const selectProducts = "SELECT * FROM projetobd.product WHERE category=$1";
+const selectProductsPriceCres = "SELECT * FROM projetobd.product WHERE category=$1 ORDER BY price ASC";
+const selectProductsPriceDesc = "SELECT * FROM projetobd.product WHERE category=$1 ORDER BY price DESC";
+const selectProductsAlpha = "SELECT * FROM projetobd.product WHERE category=$1 ORDER BY name ASC";
 const updateProductTable =
 	'UPDATE projetobd.product SET stock_quantity=$1 WHERE ID=$2';
 const insertOrder =
@@ -42,8 +43,8 @@ function getDate() {
 	return today;
 }
 
-function selectQuery(err, client, done, res, message, page) {
-	client.query(message, function (err, result) {
+function selectQuery(err, client, done, res, message, value, page) {
+	client.query(message, value, function (err, result) {
 		done();
 		if (err) {
 			console.log(err);
@@ -65,29 +66,75 @@ function loggedIn(req, res, next) {
 	}
 }
 
-router.post('/change_order', function (req, res) { 
-	productsPageValue = req.body.productsOptions;
-
-	res.redirect('/products/products');
-});
-
-router.get('/products', function (req, res) {
+function loadProducts(res, tipoProduto) {
 	pool.connect(function (err, client, done) {
 		if (err) {
 			console.log("Não foi possivel fazer a conexão" + err);
 			res.status(400).send(err);
 		}
 		if (productsPageValue === "1") {
-			selectQuery(err, client, done, res, selectProducts, 'products');
+			selectQuery(err, client, done, res, selectProducts, tipoProduto, 'products');
 		} else if (productsPageValue === "2") {
-			selectQuery(err, client, done, res, selectProductsAlpha, 'products');
+			selectQuery(err, client, done, res, selectProductsAlpha, tipoProduto, 'products');
 		} else if (productsPageValue === "3") {
-			selectQuery(err, client, done, res, selectProductsPriceDesc, 'products');
+			selectQuery(err, client, done, res, selectProductsPriceDesc, tipoProduto, 'products');
 		} else if (productsPageValue === "4") {
-			selectQuery(err, client, done, res, selectProductsPriceCres, 'products');
+			selectQuery(err, client, done, res, selectProductsPriceCres, tipoProduto, 'products');
 		}
 	});
+}
+
+router.post('/change_order', function (req, res) { 
+	productsPageValue = req.body.productsOptions;
+
+	res.redirect('/products' + productsPageActual);
 });
+
+router.get('/products', function (req, res) {
+	res.redirect('/products' + productsPageActual);
+});
+
+
+router.get('/tv_audio', function (req, res) {
+	productsPageActual = "/tv_audio";
+	loadProducts(res, ["TVs e Áudio"]);
+});
+
+router.get('/eletrodomesticos', function (req, res) {
+	productsPageActual = "/eletrodomesticos";
+	loadProducts(res, ["Eletrodomésticos"]);
+});
+
+router.get('/infomartica', function (req, res) {
+	productsPageActual = "/infomartica";
+	loadProducts(res, ["Informática"]);
+});
+
+router.get('/telefonia', function (req, res) {
+	productsPageActual = "/telefonia";
+	loadProducts(res, ["Telefonia"]);
+});
+
+router.get('/esporte_lazer', function (req, res) {
+	productsPageActual = "/esporte_lazer";
+	loadProducts(res, ["Esporte e Lazer"]);
+});
+
+router.get('/automotivo', function (req, res) {
+	productsPageActual = "/automotivo";
+	loadProducts(res, ["Automotivo"]);
+});
+
+router.get('/games', function (req, res) {
+	productsPageActual = "/games";
+	loadProducts(res, ["Games"]);
+});
+
+router.get('/livros_papelaria', function (req, res) {
+	productsPageActual = "/livros_papelaria";
+	loadProducts(res, ["Livros e Papelaria"]);
+});
+
 
 router.post('/add', function (req, res) {
 	cart.totalAmount++;
@@ -105,7 +152,7 @@ router.post('/add', function (req, res) {
 		cart.productsId[req.body.productId].quantity++;
 	}
 
-	res.redirect('/products/products');
+	res.redirect('/products' + productsPageActual);
 });
 
 router.get('/cart', function (req, res) {
